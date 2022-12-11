@@ -5,7 +5,11 @@ OPT !!!! Make a list of graph data objects
 Create schema for tables 
 
 Do Assignments
-
+    1) Proposal                 -X
+    2) Make ERD or EERD             
+    3) Relational schema
+    4) Create SQL code for DB
+ 
 Select DB to use 
 
 Create connection to DB
