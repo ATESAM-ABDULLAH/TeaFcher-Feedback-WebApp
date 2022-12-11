@@ -1,4 +1,0 @@
-env-> cd Environments/flask-app/bin
-      source  activate
-
-app -> cd Documents/Projects/Flask-WebApp
