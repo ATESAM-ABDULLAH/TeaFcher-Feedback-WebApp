@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FEEDBACK FORM</title>
+
+  <!-- link to CSS file -->
+  <link rel="stylesheet" href="{{url_for('static',filename='student/feedback.css')}}">
+
+  <!-- link to JS file -->
+  <script src="{{url_for('static',filename='student/feedback.js')}}" type="text/javascript"></script>
+
+  <!-- JQuery link -> needed to call form elements in js -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body class="container">
+
+  <!-- Btn to logout to main -->
+  <div class="logout">
+    <button class="logout-btn">
+      <a href="/login">LOGOUT</a>
+    </button>
+  </div>
+
+  <header class="header">
+    <h1 id="title" class="text-center">TEACHER FEEDBACK FORM</h1>
+    <p id="description" class="description text-center">Fill the form to the best of your knowledge,any false report
+      will be held accountable</p>
+    <br>
+  </header>
+
+  <form id="wrapper" method="post">
+
+    <!-- Get from DB -->
+    <div class="student-data" id="student-data">
+      <p>Name: <span id="name">___</span></p>
+      <p>Regno: <span id="course">___</span></p>
+    </div>
+
+    <!-- Drop down to show current enroled courses -->
+    <label for="dropdown" class="dropdown-label">
+      <p>Course :</p>
+      (required)
+    </label>
+    <select name="course-no" id="dropdown" class="course-no" required>
+      <option disabled selected value>----</option>
+      <!-- call options from data base -->
+      <!-- currently options are being called from JS file -->
+    </select>
+
+    <p>
+      ----------------------------------------------------------------------------------------------------------------------------------------
+    </p>
+
+    <div id="form-group">
+      <p>1. The instructor was well prepared for the class.</p>
+      <label>
+        <input name="q1" value="5" type="radio" class="input-radio" />Almost Always
+      </label>
+      <label>
+        <input name="q1" value="4" type="radio" class="input-radio" />Frequently
+      </label>
+      <label>
+        <input name="q1" value="3" type="radio" class="input-radio" checked />Sometimes
+      </label>
+      <label>
+        <input name="q1" value="2" type="radio" class="input-radio" />Rarely
+      </label>
+      <label>
+        <input name="q1" value="1" type="radio" class="input-radio" />Almost Never
+      </label>
+      <br>
+    </div>
+
+    <div id="form-group">
+      <p>2. The instructor showed an interest in helping students learn.</p>
+      <label>
+        <input name="q2" value="5" type="radio" class="input-radio" />Almost Always
+      </label>
+      <label>
+        <input name="q2" value="4" type="radio" class="input-radio" />Frequently
+      </label>
+      <label>
+        <input name="q2" value="3" type="radio" class="input-radio" checked />Sometimes
+      </label>
+      <label>
+        <input name="q2" value="2" type="radio" class="input-radio" />Rarely
+      </label>
+      <label>
+        <input name="q2" value="1" type="radio" class="input-radio" />Almost Never
+      </label>
+      <br>
+    </div>
+
+    <div id="form-group">
+      <p>3. I received useful feedback on my performance on tests, papers, etc .</p>
+      <label>
+        <input name="q3" value="5" type="radio" class="input-radio" />Almost Always
+      </label>
+      <label>
+        <input name="q3" value="4" type="radio" class="input-radio" />Frequently
+      </label>
+      <label>
+        <input name="q3" value="3" type="radio" class="input-radio" checked />Sometimes
+      </label>
+      <label>
+        <input name="q3" value="2" type="radio" class="input-radio" />Rarely
+      </label>
+      <label>
+        <input name="q3" value="1" type="radio" class="input-radio" />Almost Never
+      </label>
+      <br>
+    </div>
+
+    <div id="form-group">
+      <p>4. The instructional materials (i.e., books, readings, handouts, study guides, multimedia) increased my
+        knowledge and skills in the subject matter.</p>
+      <label>
+        <input name="q4" value="5" type="radio" class="input-radio" />Almost Always
+      </label>
+      <label>
+        <input name="q4" value="4" type="radio" class="input-radio" />Frequently
+      </label>
+      <label>
+        <input name="q4" value="3" type="radio" class="input-radio" checked />Sometimes
+      </label>
+      <label>
+        <input name="q4" value="2" type="radio" class="input-radio" />Rarely
+      </label>
+      <label>
+        <input name="q4" value="1" type="radio" class="input-radio" />Almost Never
+      </label>
+      <br>
+    </div>
+
+    <div id="form-group">
+      <p>5. How was the speed with which your instructor present the course material?</p>
+      <label>
+        <input name="q5" value="5" type="radio" class="input-radio" />Much too fast
+      </label>
+      <label>
+        <input name="q5" value="4" type="radio" class="input-radio" />Fast
+      </label>
+      <label>
+        <input name="q5" value="3" type="radio" class="input-radio" checked />Appropriate
+      </label>
+      <label>
+        <input name="q5" value="2" type="radio" class="input-radio" />Slow
+      </label>
+      <label>
+        <input name="q5" value="1" type="radio" class="input-radio" />Much too slow
+      </label>
+      <br>
+    </div>
+
+    <div id="form-group">
+      <p>6. How helpful the homework and assignments to your understanding of the course material?</p>
+      <label>
+        <input name="q6" value="5" type="radio" class="input-radio" />Extremely helpful
+      </label>
+      <label>
+        <input name="q6" value="4" type="radio" class="input-radio" />Very helpful
+      </label>
+      <label>
+        <input name="q6" value="3" type="radio" class="input-radio" checked />Somewhat helpful
+      </label>
+      <label>
+        <input name="q6" value="2" type="radio" class="input-radio" />Not so helpful
+      </label>
+      <label>
+        <input name="q6" value="1" type="radio" class="input-radio" />Extremely not helpful
+      </label>
+      <br>
+    </div>
+
+    <div id="form-group">
+      <p>7. The examinations, assignments measured my knowledge of the course material.</p>
+      <label>
+        <input name="q7" value="5" type="radio" class="input-radio" />Almost Always
+      </label>
+      <label>
+        <input name="q7" value="4" type="radio" class="input-radio" />Frequently
+      </label>
+      <label>
+        <input name="q7" value="3" type="radio" class="input-radio" checked />Sometimes
+      </label>
+      <label>
+        <input name="q7" value="2" type="radio" class="input-radio" />Rarely
+      </label>
+      <label>
+        <input name="q7" value="1" type="radio" class="input-radio" />Almost Never
+      </label>
+      <br>
+    </div>
+
+    <div id="form-group">
+      <p>8. How knowledgeable was your instructor?</p>
+      <label>
+        <input name="q8" value="5" type="radio" class="input-radio" />Extremely knowledgeable
+      </label>
+      <label>
+        <input name="q8" value="4" type="radio" class="input-radio" />Very knowledgeable
+      </label>
+      <label>
+        <input name="q8" value="3" type="radio" class="input-radio" checked />some what knowledgeable
+      </label>
+      <label>
+        <input name="q8" value="2" type="radio" class="input-radio" />Barely knowledgeable
+      </label>
+      <label>
+        <input name="q8" value="1" type="radio" class="input-radio" />Had no prior knowledge
+      </label>
+      <br>
+    </div>
+
+    <div id="form-group">
+      <p>9. The teacher was accessible and willing to provide help.</p>
+      <label>
+        <input name="q9" value="5" type="radio" class="input-radio" />Almost Always
+      </label>
+      <label>
+        <input name="q9" value="4" type="radio" class="input-radio" />Frequently
+      </label>
+      <label>
+        <input name="q9" value="3" type="radio" class="input-radio" checked />Sometimes
+      </label>
+      <label>
+        <input name="q9" value="2" type="radio" class="input-radio" />Rarely
+      </label>
+      <label>
+        <input name="q9" value="1" type="radio" class="input-radio" />Almost Never
+      </label>
+      <br>
+    </div>
+
+    <div id="form-group">
+      <p>10. The teacher encouraged feedback from the class .</p>
+      <label>
+        <input name="q10" value="5" type="radio" class="input-radio" />Almost Always
+      </label>
+      <label>
+        <input name="q10" value="4" type="radio" class="input-radio" />Frequently
+      </label>
+      <label>
+        <input name="q10" value="3" type="radio" class="input-radio" checked />Sometimes
+      </label>
+      <label>
+        <input name="q10" value="2" type="radio" class="input-radio" />Rarely
+      </label>
+      <label>
+        <input name="q10" value="1" type="radio" class="input-radio" />Almost Never
+      </label>
+      <br>
+    </div>
+
+    <div id="form-group">
+      <p>11. The teacher communicated objectives and requirements clearly.</p>
+      <label>
+        <input name="q11" value="5" type="radio" class="input-radio" />Almost Always
+      </label>
+      <label>
+        <input name="q11" value="4" type="radio" class="input-radio" />Frequently
+      </label>
+      <label>
+        <input name="q11" value="3" type="radio" class="input-radio" checked />Sometimes
+      </label>
+      <label>
+        <input name="q11" value="2" type="radio" class="input-radio" />Rarely
+      </label>
+      <label>
+        <input name="q11" value="1" type="radio" class="input-radio" />Almost Never
+      </label>
+      <br>
+    </div>
+
+    <div id="form-group">
+      <label id="score-label" for="rating">How would you rate your teacher (1-10) ?</label>
+      <input type="number" name="rating" id="score" min="1" max="10" class="form-control" value="5" required />
+      <br>
+    </div>
+
+    <div id="form-group">
+      <p>Any extra comments?</p>
+      <textarea id="comments" class="input-textarea" name="comment" placeholder="i am a..." value="">
+      </textarea>
+      <br>
+    </div>
+
+    <div id="form-group">
+      <button type="submit" id="submit" class="submit-button">
+        Submit
+      </button>
+    </div>
+
+  </form>
+
+</body>
+
+</html>

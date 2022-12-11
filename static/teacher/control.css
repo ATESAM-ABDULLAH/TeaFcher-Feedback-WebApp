@@ -1,0 +1,149 @@
+/* variables for easy changes */
+:root {
+    --btn-color: rgb(67, 144, 196);
+    --btn-border-color: rgb(255, 255, 255);
+
+    --add-input: rgb(0, 112, 0);
+    --remove-input: rgba(177, 0, 0, 0.767);
+
+    --text-color: rgb(238, 238, 238);
+    --heading-color: black;
+
+    --form-color: rgb(37, 37, 37);
+
+    --link-color: greenyellow;
+
+    --grad-color-1: #ffe2a8;
+    --grad-color-2: #b9b9b9;
+}
+
+/* Main body tag */
+body {
+    width: 100%;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #ccc;
+
+    background-image: linear-gradient(-90deg,
+            var(--grad-color-1),
+            var(--grad-color-2));
+}
+
+/* heading for page */
+.header {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--heading-color);
+}
+
+/* centered wrapper */
+.wrapper {
+    width: 500px;
+    background: var(--form-color);
+    padding: 15px 20px;
+    margin: auto;
+    border-radius: 1.25rem;
+}
+
+p {
+    color: var(--text-color);
+
+    font-size: 20px;
+    /* font-weight: 200; */
+
+    margin-bottom: 10px;
+}
+
+/* User data */
+span {
+    text-decoration: underline;
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Labels for inputs */
+label {
+    color: var(--text-color);
+}
+
+/* Make inputs full sized */
+input[type=number] {
+    max-width: 300px;
+    padding: 5px;
+
+    margin: 8px 0;
+    border: 1px solid rgb(255, 213, 75);
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: var(--btn-color);
+    color: var(--text-color);
+
+    padding: 10px;
+    margin: auto;
+
+    border: none;
+    cursor: crosshair;
+
+    width: auto;
+    height: auto;
+
+    font-size: 15px;
+    font-weight: 400;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+    font-weight: 600;
+    border: 1px solid var(--btn-border-color);
+}
+
+.btn-submit {
+    background-color: var(--add-input);
+}
+
+.right {
+    text-align: right;
+    margin: 5px;
+    padding: 0%;
+    font-size: 20px;
+}
+
+.btn-add {
+    background-color: var(--add-input);
+}
+
+.btn-remove {
+    background-color: var(--remove-input);
+}
+
+/*ordered list */
+ol {
+    max-width: 300px;
+
+    justify-content: left;
+    align-items: center;
+
+    transform: translateY(-65px);
+
+    text-align: left;
+    color: var(--text-color);
+}
+
+.logout-btn {
+    color: white;
+    background-color: rgba(212, 0, 0, 0.76);
+    border: 1px black solid;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}

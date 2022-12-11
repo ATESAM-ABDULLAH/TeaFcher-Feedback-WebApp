@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LOGIN PAGE</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='/login/login.css')}}">
+</head>
+
+<body>
+    <h1 class="header">
+        LOGIN PAGE
+    </h1>
+    <div class="wrapper">
+
+        <img src="{{url_for('static',filename='GIKI-Logo.jpg')}}" alt="GIKI-Logo" id="logo">
+
+        <form method="post">
+
+            <label for="email" id="email-label">EMAIL</label>
+            <input type="email" name="email" id="email" placeholder="abc@giki.edu.pk" required>
+
+            <label for="password" id="password-label">PASSWORD</label>
+            <input type="password" name="password" id="password" placeholder="****" required>
+
+            <label for="type" id="type-label">I am a ...</label>
+            <select id="dropdown" name="type" class="type" required>
+                <option disabled selected value>Select position</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button type="submit" id="submit" class="submit-button">LOGIN</button>
+
+            <button type="reset" id="reset-button">RESET</button>
+
+        </form>
+
+        <a href="/signup" id="link" class="signup-link">Signup ... </a>
+
+    </div>
+</body>
+
+</html>

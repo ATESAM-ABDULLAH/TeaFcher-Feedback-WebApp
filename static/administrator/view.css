@@ -1,0 +1,132 @@
+:root {
+    --btn-color: rgb(67, 144, 196);
+    --btn-border-color: rgb(255, 255, 255);
+
+    --text-color: rgb(238, 238, 238);
+    --heading-color: black;
+
+    --form-color: rgb(37, 37, 37);
+
+    --link-color: greenyellow;
+
+    --grad-color-1: #f19478c9;
+    --grad-color-2: #2c3e50c0;
+}
+
+/* Main body tag */
+body {
+    width: 100%;
+    height: 100%;
+
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #ccc;
+
+    background-image: linear-gradient(-90deg,
+            var(--grad-color-1),
+            var(--grad-color-2));
+}
+
+/* heading for page */
+.header {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--heading-color);
+}
+
+/* centered wrapper */
+.wrapper {
+    width: 1000px;
+    background: var(--form-color);
+    padding: 15px 20px;
+    margin: auto;
+    border-radius: 1.25rem;
+}
+
+/* Labels for inputs */
+label {
+    color: var(--text-color);
+}
+
+/* general text */
+p {
+    color: var(--text-color);
+
+    font-size: 20px;
+    /* font-weight: 200; */
+
+    margin-bottom: 10px;
+}
+
+/* User data */
+span {
+    text-decoration: underline;
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* list of qustions */
+#list {
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+/* H3 for teacher rating question */
+h3 {
+    color: var(--text-color);
+}
+
+/* form element -> dropdown + btns */
+#survey {
+    text-align: right;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: var(--btn-color);
+    color: var(--text-color);
+
+    padding: 10px;
+    margin: auto;
+
+    border: 1px solid var(--btn-color);
+    cursor: crosshair;
+
+    width: auto;
+    height: auto;
+
+    font-size: 15px;
+    font-weight: 400;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+    font-weight: 600;
+    border: 1px solid var(--btn-border-color);
+}
+
+/* logout btn top left */
+.logout-btn {
+    color: white;
+    background-color: rgba(212, 0, 0, 0.76);
+    border: 1px black solid;
+}
+
+/* Link to login page in logout btn */
+a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* graph */
+.data {
+    width: 100%;
+    height: 350px;
+
+    margin: 0;
+    padding: 0;
+}

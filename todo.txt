@@ -1,0 +1,15 @@
+Make a function in admin/view.js to make a call to DB to get data
+
+OPT !!!! Make a list of graph data objects
+
+Create schema for tables 
+
+Do Assignments
+
+Select DB to use 
+
+Create connection to DB
+
+Post data to DB
+
+get data in main using request.form

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SIGNUP PAGE</title>
+
+    <!-- link to css -->
+    <link rel="stylesheet" href="{{url_for('static',filename='signup/signup.css')}}">
+
+    <!-- Link to script -->
+    <script src="{{url_for('static',filename='signup/signup.js')}}" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <!-- Heading of page -->
+    <h1 class="header">
+        SIGNUP PAGE
+    </h1>
+
+    <!-- Main contents -->
+    <div class="wrapper">
+        <!-- Giki logo -->
+        <img src="{{url_for('static',filename='GIKI-Logo.jpg')}}" alt="GIKI-Logo" id="logo">
+
+        <!-- Form to submit data to DB -->
+        <form method="post">
+
+            <label for="name" id="name">NAME</label>
+            <input type="text" name="name" id="name" placeholder="Mr. xyz" required>
+            <br>
+            <label for="email" id="email-label">EMAIL</label>
+            <input type="email" name="email" id="email" placeholder="abc@giki.edu.pk" required>
+            <br>
+            <label for="password" id="password-label">PASSWORD</label>
+            <input type="password" name="password" id="password" placeholder="****" minlength="4" maxlength="4"
+                onkeyup="check_pass()" required>
+            <br>
+            <label for="password" id="con-password-label">CONFIRM PASSWORD</label>
+            <input type="password" name="con-password" id="con-password" placeholder="****" minlength="4" maxlength="4"
+                onkeyup="check_pass()" required>
+            <span id="message"></span>
+            <br>
+            <!-- Drop down to select user type -->
+            <label for="user" id="user-label">I am a ...</label>
+            <select id="dropdown" name="user" class="user" required>
+                <option disabled selected value>Select position</option>
+                <option value="student" onclick="show_extra('student')">Student</option>
+                <option value="teacher" onclick="show_extra('teacher')">Teacher</option>
+                <!-- NO ADMin Signup -> builtin -->
+            </select>
+            <br><br>
+
+            <!-- Special data for teacher -->
+            <div id="ch-course">
+                <label for="teacher-id" id="teacher-id-label">Faculty id</label>
+                <input type="number" name="teacher-id" id="teacher-id" placeholder="123" min="99" max="1000" value="">
+
+                <label for="course" id="course-label">COURSE</label>
+                <input type="text" name="course" id="course" placeholder="CS 232" value="">
+            </div>
+            <!-- Special data for students -->
+            <div id="ch-regno">
+                <label for="regno" id="regno-label">REGISTRATION #</label>
+                <input type="number" name="regno" id="regno" placeholder="2021114" min="2018000" max="2023000" value="">
+            </div>
+
+            <button type="submit" id="submit" class="submit-button" disabled="false">SIGNUP</button>
+
+            <button type="reset" id="reset-button">RESET</button>
+
+        </form>
+        <!-- Link to login page -->
+        <a href="/login" id="link" class="login">Login...</a>
+    </div>
+</body>
+
+</html>

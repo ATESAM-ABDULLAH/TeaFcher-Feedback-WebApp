@@ -1,0 +1,103 @@
+/* variables for easy changes */
+:root {
+    --btn-color: rgb(67, 144, 196);
+    --btn-border-color: rgb(255, 255, 255);
+
+    --text-color: rgb(238, 238, 238);
+    --heading-color: black;
+
+    --form-color: rgb(37, 37, 37);
+
+    --link-color: greenyellow;
+
+    --grad-color-1: #fdfdfd;
+    --grad-color-2: #8faad4;
+}
+
+/* Main body tag */
+body {
+    height: 100%;
+    width: 100%;
+
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #ccc;
+
+    background-image: linear-gradient(-90deg,
+            var(--grad-color-1),
+            var(--grad-color-2));
+}
+
+/* heading for page */
+.header {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--heading-color);
+}
+
+/* centered wrapper */
+.wrapper {
+    width: 500px;
+    background: var(--form-color);
+    padding: 15px 20px;
+    margin: auto;
+    border-radius: 1.25rem;
+}
+
+/* GIKI logo */
+#logo {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Labels for inputs */
+label {
+    color: var(--text-color);
+}
+
+/* Make inputs full sized */
+input[type=email],
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: var(--btn-color);
+    color: var(--text-color);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: crosshair;
+    width: 100%;
+    font-weight: 400;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+    font-weight: 600;
+    border: 1px solid var(--btn-border-color);
+}
+
+/* dropdown */
+#dropdown {
+    padding: 10px;
+}
+
+a:link,
+a:visited {
+    color: var(--link-color);
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- anycharts for easy to understand BAR graph -->
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
+
+    <!-- Title of page -->
+    <title>VIEW FEEDBACK</title>
+
+    <!-- CSS link -->
+    <link rel="stylesheet" href="{{url_for('static',filename='administrator/view.css')}}">
+
+    <!-- JS link -->
+    <script src="{{url_for('static',filename='administrator/view.js')}}" type="text/javascript"></script>
+
+    <!-- JQuery link -> needed to call form elements in js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Btn to logout to main -->
+    <div class="logout">
+        <button class="logout-btn">
+            <a href="/login">LOGOUT</a>
+        </button>
+    </div>
+
+    <!-- Heading of page -->
+    <h1 class="header" id="header">VIEW FEEDBACK</h1>
+
+    <!-- Main wrapper for webpage -->
+    <div class="wrapper" id="wrapper">
+
+        <!-- User Data to be called from DB -->
+        <!-- currently called using prompts -->
+        <div class="extra-data" id="user-data">
+            <p class="extra">Name : <span id="name">{js in here}</span></p>
+            <p class="extra">Email : <span id="email">{js in here}</span></p>
+            <p>-----------------------------------------------------------------------------------------------------------------------------------------------------
+            </p>
+        </div>
+
+        <!-- Display all questions from survey -->
+        <div class="questions" id="questions">
+            <h3 class="question-label" id="question-label">Questions:</h3>
+            <ol class="list" id="list">
+                <li>The instructor was well prepared for the class.</li>
+                <li>The instructor showed an interest in helping students learn.</li>
+                <li>I received useful feedback on my performance on tests, papers, etc .</li>
+                <li>The instructional materials (i.e., books, readings, handouts, study guides, multimedia) increased
+                    my knowledge and skills in the subject matter.</li>
+                <li>How was the speed with which your instructor present the course material?</li>
+                <li>How helpful the homework and assignments to your understanding of the course material?</li>
+                <li>The examinations, assignments measured my knowledge of the course material.</li>
+                <li>How knowledgeable was your instructor?</li>
+                <li>The teacher was accessible and willing to provide help.</li>
+                <li>The teacher encouraged feedback from the class .</li>
+                <li>The teacher communicated objectives and requirements clearly.</li>
+            </ol>
+            <h3 class="rating-label" id="rating-label">How would you rate your teacher (1-10) ?</h3>
+            <p>-------------------------------------------------------------------------------------------------------------------------------------------------
+            </p>
+        </div>
+
+
+        <!-- To get data from DB -->
+        <form id="survey" method="post">
+            <!-- Dropdown to select Course to be viewed -->
+            <label for="dropdown" class="dropdown-label">Select Course :</label>
+            <select name="course-no" id="dropdown" class="course-no">
+                <option disabled selected value>----</option>
+                <!-- call options from data base -->
+                <!-- currently options are being called from JS file -->
+            </select>
+
+            <button type="button" id="btn-submit" class="right" onClick="callChart()">View</button>
+
+            <button type="reset" id="btn-reset" class="right" onClick="reset_data()">Reset
+
+            </button>
+        </form>
+
+        <div class="extra" id="extra">
+            <p>Teacher: <span id="teacher">___</span></p>
+            <p>Course: <span id="course">___</span></p>
+        </div>
+
+        <div class="data" id="graph-container"></div>
+
+
+    </div>
+
+</body>
+
+</html>

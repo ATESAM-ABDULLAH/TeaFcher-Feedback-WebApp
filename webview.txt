@@ -1,0 +1,62 @@
+//LOGIN = HOME
+{
+    Login->(student,teacher,admin)
+        email,                   ->text
+        password,                ->int
+        type                     ->dropdown(text)
+}
+
+//SIGNUP
+{
+    Signup->(student, teacher)
+        name,                       ->text
+        email,                      ->email
+        password,confirm_password,  ->pass (4 char)
+        1)student:
+            regno                   ->text (7 char)
+        2)teacher:                                      ----->one teacher per course
+            teacher id,             ->text (3 char)  
+            course no               ->text (5 char)
+
+    Signup ->(admin)   ![builtin,presaved]
+        1) name:        administrator
+        2) email:       admin@giki.edu.pk
+        3) password :   0000
+}
+
+//FEEDBACK  ->student-view
+{
+    Feedback -> (student)
+        1)Student data:                             ----> get from DB
+            Name,               ->text
+            Regno,              ->int
+            Courses enrolled ,  ->dropdown(text)    ----> get from DB/Feedback-table
+        2)Feedback:
+            Q1-11               ->(1-5 rating)
+            Teacher rating      ->(1-10 rating)
+            Comments            ->text              ----> currently does nothing
+}
+
+//ACCESS CONTROL ->teacher-view
+{
+    Control -> (teacher)
+        1)Teacher data:                             ----->get from DB
+            Name,               ->text
+            Course              ->text
+        2)Students List:                            ----->add list of students to DB on submit 
+            Regno               ->int
+}
+
+//VIEW DATA ->admin-view
+{
+    View data ->(admin)
+        1)Admin data:                               ----->get from DB
+            Name,               ->text
+            Email               ->text
+        2)Question list:
+            Q1-12               ->text
+        2)View data:
+            Course,             ->dropdown(text)    ----->all unique courses in DB
+            Teacher,            ->text              ----->get from DB
+            Graph               ->Bar graph         ----->avg of feedback of course selected
+}
