@@ -8,27 +8,27 @@ app=Flask(__name__)
 @app.route("/login",methods=["GET","POST"])
 def login():
     print(request.form)
-    return render_template('./login/login.html')
+    return render_template('login.html')
 
 @app.route("/signup",methods=["GET","POST"])
 def signup():
     print(request.form)
-    return render_template('./signup/signup.html')
+    return render_template('signup.html')
 
 @app.route("/student",methods=["GET","POST"])
 def student():
     print(request.form)
-    return render_template('./student/feedback.html')
+    return render_template('feedback.html')
 
 @app.route("/faculty",methods=["GET","POST"])
 def teacher():
     print(request.form)
-    return render_template('./teacher/control.html')
+    return render_template('control.html')
 
 @app.route("/admin",methods=["GET","POST"])
 def faculty():
     print(request.form)
-    return render_template('./adminstrator/view.html')
+    return render_template('view.html')
 
 # Run using python instead of flask
 if(__name__ == '__main__'):
