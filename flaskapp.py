@@ -25,10 +25,10 @@ def teacher():
     print(request.form)
     return render_template('control.html')
 
-# @app.route("/admin",methods=["GET","POST"])
-# def faculty():
-#     print(request.form)
-#     return render_template('view.html')
+@app.route("/admin",methods=["GET","POST"])
+def faculty():
+    print(request.form)
+    return render_template('view.html')
 
 # Run using python instead of flask
 if(__name__ == '__main__'):
