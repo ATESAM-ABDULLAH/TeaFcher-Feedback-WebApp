@@ -1,5 +1,6 @@
 //Get list from DB
-var course_list = ['CS 232', 'CS 101', 'MT 201', 'ES 101', 'CE 112'];
+const course_list = ['CS 232', 'CS 101', 'MT 201', 'ES 101', 'CE 112'];
+
 
 //Store selected course
 var course_selected = 'N/A';
