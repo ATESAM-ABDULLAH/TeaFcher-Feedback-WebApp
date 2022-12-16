@@ -14,8 +14,7 @@
         password,confirm_password,  ->pass (4 char)
         1)student:
             regno                   ->text (7 char)
-        2)teacher:                                      ----->one teacher per course
-            teacher id,             ->text (3 char)  
+        2)teacher:                                      ----->one teacher per course  
             course no               ->text (5 char)
 
     Signup ->(admin)   ![builtin,presaved]
