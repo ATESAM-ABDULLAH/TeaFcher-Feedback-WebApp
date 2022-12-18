@@ -2,4 +2,4 @@ Make Relational Schema of EERD
 
 ------------------------------------------------------------------------------------
 
-signup page js not working fix it
+signup JS not in Chrome only 

@@ -28,5 +28,6 @@ var check_pass = function () {
         document.getElementById('message').innerHTML = 'XX';
         document.getElementById('submit').disabled = true;
     }
+    console.log("x");
 }
 
