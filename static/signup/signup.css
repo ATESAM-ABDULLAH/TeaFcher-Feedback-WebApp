@@ -118,3 +118,7 @@ a:link,
 a:visited {
     color: var(--link-color);
 }
+
+#course{
+    max-width: 211px;
+}
