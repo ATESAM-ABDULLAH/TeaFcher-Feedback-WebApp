@@ -1,22 +1,5 @@
-Make a function in admin/view.js to make a call to DB to get data
+Make Relational Schema of EERD
 
-OPT !!!! Make a list of graph data objects
-
-Create schema for tables 
-
-Do Assignments
-    1) Proposal                 -X
-    2) Make ERD or EERD             
-    3) Relational schema
-    4) Create SQL code for DB
- 
-Select DB to use 
-
-Create connection to DB
-
-Post data to DB
-
-get data in main using request.form
 ------------------------------------------------------------------------------------
 
 signup page js not working fix it
