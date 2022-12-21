@@ -14,5 +14,6 @@ db_URL=f"{DIALECT}+{SQL_DRIVER}://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}"
 try:
     engine = create_engine(db_URL)
     print("Connection made succesfully")
+    print(engine)
 except Exception as ex:
     print("Connection not made ERR:",ex)
