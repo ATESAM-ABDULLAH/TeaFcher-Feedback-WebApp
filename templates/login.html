@@ -16,7 +16,7 @@
 
         <img src="{{url_for('static',filename='GIKI-Logo.jpg')}}" alt="GIKI-Logo" id="logo">
 
-        <form method="post">
+        <form method="post" action="/valid">
 
             <label for="email" id="email-label">EMAIL</label>
             <input type="email" name="email" id="email" placeholder="abc@giki.edu.pk" required>
@@ -38,7 +38,7 @@
 
         </form>
 
-        <a href="/signup" id="link" class="signup-link">Signup ... </a>
+        <p style="color:white">Not a user? <a href="/signup" id="link" class="signup-link">Create Account</a></p>
 
     </div>
 </body>

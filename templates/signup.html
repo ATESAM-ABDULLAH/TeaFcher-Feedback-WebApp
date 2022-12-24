@@ -26,7 +26,7 @@
         <img src="{{url_for('static',filename='GIKI-Logo.jpg')}}" alt="GIKI-Logo" id="logo">
 
         <!-- Form to submit data to DB -->
-        <form method="post">
+        <form method="post" action="/valid">
 
             <label for="name" id="name">NAME</label>
             <input type="text" name="name" id="name" placeholder="Mr. xyz" required>
@@ -45,7 +45,7 @@
             <br>
             <!-- Drop down to select user type -->
             <label for="user" id="user-label">I am a ...</label>
-            <select id="dropdown" name="user" class="user" required>
+            <select id="dropdown" name="type" class="user" required>
                 <option disabled selected value>Select position</option>
                 <option value="student" onclick="show_extra('student')">Student</option>
                 <option value="teacher" onclick="show_extra('teacher')">Teacher</option>
@@ -70,7 +70,7 @@
 
         </form>
         <!-- Link to login page -->
-        <a href="/login" id="link" class="login">Login...</a>
+        <p style="color:white">Already a user? <a href="/login" id="link" class="login">Login Here</a></p>
     </div>
 </body>
 
