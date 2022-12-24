@@ -1,12 +1,13 @@
 # Imports
-# import db #File with database config
+import db #File with database config
 
-from flask import Flask, render_template, url_for, request, redirect, session
+from flask import Flask, render_template, url_for, request, redirect
+from flask import session , session as session2 
 
 # from sqlalchemy import Column, Integer, String, create_engine
 # from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.orm import sessionmaker
-# import random
+from sqlalchemy.orm import sessionmaker
+import random
 #-------------------------------------------------------------------------------------------------------
 
 # main app 
@@ -35,21 +36,21 @@ def login():
 def signup():
     if request.method == 'POST': #if form is submitted
 
-        session['name']=request.form.get('name')
-        session['email']=request.form.get('email')
-        session['password']=request.form.get('password')
-        session['type']=request.form.get('type') #can be student/teacher
-        session['course']=request.form.get('course')
-        session['regno']=request.form.get('regno')
+        session2['name']=request.form.get('name')
+        session2['email']=request.form.get('email')
+        session2['password']=request.form.get('password')
+        session2['type']=request.form.get('type') #can be student/teacher
+        session2['course']=request.form.get('course')
+        session2['regno']=request.form.get('regno')
 
         return redirect(url_for('valid_signup'))#redirect to validation func
 
     else: #if viewing page
-        if 'email' in session:#session still going
+        if 'email' in session2:#session still going
             return redirect(url_for('valid_signup'))#redirect to validation func
 
         return render_template('signup.html')
-
+2
 @app.route("/student",methods=["GET","POST"])
 def student():
     print(request.form)
@@ -84,7 +85,8 @@ def valid_login():
             return redirect('/faculty')
         if(type =='admin' and valid):
             return redirect('/admin')
-
+        if(not valid):
+            return redirect("/login")
         # if no page works / is down
         return f"{email} , {password} , {type}"
 
@@ -93,21 +95,35 @@ def valid_login():
 
 @app.route("/valid-signup")
 def valid_signup():
-    if 'email' in session:
+    if 'email' in session:#data is submitted from signup
+        
+        valid =False
+        id=random.randint(1,1000)
+        name=session2['name']
+        email=session2['email']
+        password=session2['password']
+        type=session2['type']
+        course=session2['course']
+        regno=session2['regno']
+        
+        # if (not valid):
+            # return redirect('/signup')
 
-        # use db auth here
-        valid = True # make sure user is valid
+        # insert into db
+        Session=sessionmaker(bind=db.engine)
+        dbsession=Session()
 
-        name=session['name']
-        email=session['email']
-        password=session['password']
-        type=session['type']
-        course=session['course']
-        regno=session['regno']
+        tr1=db.user(id,name,email,password,type)
 
-        if(valid):
-            return f"{name} , {email} , {password} , {type} , {course} , {regno}"
+        if(type=='student'):
+            tr2=db.student(id,regno)
+        elif(type=='faculty'):
+            tr2=db.faculty(id,course)
+        
 
+        dbsession.add_all({tr1,tr2})
+        dbsession.commit()
+        
         # if no page works / is down
         return redirect("/login")
 
@@ -117,7 +133,9 @@ def valid_signup():
 
 @app.route("/logout")
 def logout():
-    session.clear()#clear session
+    #clear session
+    session.clear()
+    session2.clear()
     return redirect("/login")#redirect to login
 # -----------------------------------------------------------------------------------------
 

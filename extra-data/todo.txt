@@ -1,5 +1,5 @@
-Make Relational Schema of EERD
+Make validation for duplicate data entry
 
-------------------------------------------------------------------------------------
+Make insert for feedback , faculty access
 
-signup JS not in Chrome only 
+Make query for login ,admin view
