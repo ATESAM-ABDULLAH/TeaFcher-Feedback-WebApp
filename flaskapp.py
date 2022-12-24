@@ -35,9 +35,12 @@ def login():
 def signup():
     if request.method == 'POST': #if form is submitted
 
+        session['name']=request.form.get('name')
         session['email']=request.form.get('email')
         session['password']=request.form.get('password')
-        session['type']=request.form.get('type')
+        session['type']=request.form.get('type') #can be student/teacher
+        session['course']=request.form.get('course')
+        session['regno']=request.form.get('regno')
 
         return redirect(url_for('valid_signup'))#redirect to validation func
 
@@ -95,10 +98,15 @@ def valid_signup():
         # use db auth here
         valid = True # make sure user is valid
 
+        name=session['name']
         email=session['email']
         password=session['password']
         type=session['type']
+        course=session['course']
+        regno=session['regno']
 
+        if(valid):
+            return f"{name} , {email} , {password} , {type} , {course} , {regno}"
 
         # if no page works / is down
         return redirect("/login")
