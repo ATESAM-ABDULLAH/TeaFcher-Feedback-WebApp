@@ -16,7 +16,7 @@
 
         <img src="{{url_for('static',filename='GIKI-Logo.jpg')}}" alt="GIKI-Logo" id="logo">
 
-        <form method="post" action="/valid">
+        <form method="post" action="#">
 
             <label for="email" id="email-label">EMAIL</label>
             <input type="email" name="email" id="email" placeholder="abc@giki.edu.pk" required>
@@ -28,7 +28,7 @@
             <select id="dropdown" name="type" class="type" required>
                 <option disabled selected value>Select position</option>
                 <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
+                <option value="faculty">Faculty</option>
                 <option value="admin">Admin</option>
             </select>
 

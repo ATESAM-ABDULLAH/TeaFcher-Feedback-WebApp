@@ -1,5 +1,6 @@
-# Shifted to sqlite
+# Contains all table ORM + engine to sqlite
 
+# Local sqlite DB
 from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -16,12 +17,14 @@ class user(base):
     name=Column(String(50))
     email=Column(String(100))
     password=Column(String(4))
+    type=Column(String(10))
 
-    def __init__(self,u_id,name,email,password):
+    def __init__(self,u_id,name,email,password,type):
         self.u_id=u_id
         self.name=name
         self.email=email
         self.password=password
+        self.type=type
 
 class student(base):
     __tablename__='student'
@@ -113,6 +116,21 @@ class average(base):
         self.q10=q10
         self.q11=q11
         self.rating=rating
+
+# Session to enter data into DB
+
+# Session=sessionmaker(bind=engine)
+# session=Session()
+
+# # Print all users
+# for x in session.query(user).all():
+#     print(x.name,x.email)
+
+## Add admin user
+# tr=user(0,'admin','admin@giki.edu.pk','0000','admin')
+
+# session.add(tr)
+# session.commit()
 
 base.metadata.create_all(engine)
 

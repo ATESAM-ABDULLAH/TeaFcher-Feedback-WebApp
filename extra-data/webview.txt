@@ -10,9 +10,9 @@
 {
     Signup->(student, teacher)
         id,                         ->int(max 4)
-        name,                       ->text(50)
         email,                      ->email(100)
-        password,confirm_password,  ->pass (4 char)
+        password,confirm_password,  ->string (4)
+        type,                       ->string(10)
         1)student:
             regno                   ->text (7 char)
         2)teacher:                                      ----->one teacher per course  
@@ -20,9 +20,9 @@
 
     Signup ->(admin)   ![builtin,presaved]
         1) u_id:        0
-        1) name:        administrator
-        2) email:       admin@giki.edu.pk
-        3) password :   0000
+        2) name:        administrator
+        3) email:       admin@giki.edu.pk
+        4) password :   0000
 }
 
 //FEEDBACK  ->student-view
