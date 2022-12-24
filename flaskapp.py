@@ -1,5 +1,5 @@
 # Imports
-import db #File with database config
+# import db #File with database config
 
 from flask import Flask , render_template , url_for , request 
 
@@ -39,22 +39,22 @@ def faculty():
     print(request.form)
     return render_template('view.html')
 
-@app.route("/valid",methods=["GET","POST"])
-def valid():
+# @app.route("/valid",methods=["GET","POST"])
+# def valid():
 
-    name=request.form.get('name')
-    email=request.form.get('email')
-    password=request.form.get('password')
-    type=request.form.get('type')
-    course=request.form.get('course')
-    regno=request.form.get('regno')
+#     name=request.form.get('name')
+#     email=request.form.get('email')
+#     password=request.form.get('password')
+#     type=request.form.get('type')
+#     course=request.form.get('course')
+#     regno=request.form.get('regno')
 
-    Session=sessionmaker(bind=db.engine)
-    session=Session()
+#     Session=sessionmaker(bind=db.engine)
+#     session=Session()
 
-    tr=db.user()
-    
-    if (type=='student') :
+#     tr=db.user()
+
+#     if (type=='student') :
 
     
 
