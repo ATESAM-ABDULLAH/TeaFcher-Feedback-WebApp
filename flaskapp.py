@@ -4,8 +4,8 @@ import db #File with database config
 from flask import Flask, render_template, url_for, request, redirect
 from flask import session , session as session2 
 
+from sqlalchemy.orm import sessionmaker
 import oracledb
-import random
 #-------------------------------------------------------------------------------------------------------
 
 # main app 
@@ -104,7 +104,24 @@ def valid_signup():
         course=session2['course']
         regno=session2['regno']
         
-      
+        # if (not valid):
+            # return redirect('/signup')
+
+        # insert into db
+        Session=sessionmaker(bind=db.engine)
+        dbsession=Session()
+
+        tr1=db.user(id,name,email,password,type)
+
+        if(type=='student'):
+            tr2=db.student(id,regno)
+        elif(type=='faculty'):
+            tr2=db.faculty(id,course)
+        
+
+        dbsession.add_all({tr1,tr2})
+        dbsession.commit()
+        
         # if no page works / is down
         return redirect("/login")
 

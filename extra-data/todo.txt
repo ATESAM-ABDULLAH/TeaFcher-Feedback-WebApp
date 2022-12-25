@@ -3,3 +3,5 @@ Make validation for duplicate data entry
 Make insert for feedback , faculty access
 
 Make query for login ,admin view
+
+uninstall oracledb from main pc
