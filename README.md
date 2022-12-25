@@ -14,6 +14,8 @@ The main objective of the Teacher Feedback System is to provide the students of 
 ## Login page
 ![WhatsApp Image 2022-12-23 at 9 16 59 PM (1)](https://user-images.githubusercontent.com/96631518/209461431-67f49dd7-d992-4191-af06-03aa17d2a764.jpeg)
 ![WhatsApp Image 2022-12-23 at 9 16 59 PM](https://user-images.githubusercontent.com/96631518/209461435-5bd53802-2d96-4af0-8d41-9023b6f661ba.jpeg)
+
+## Access control
 ![WhatsApp Image 2022-12-23 at 9 16 58 PM](https://user-images.githubusercontent.com/96631518/209461428-f911ace9-8e24-4405-839b-2227a969d375.jpeg)
 
 ## Feedback page
