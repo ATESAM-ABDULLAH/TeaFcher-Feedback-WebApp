@@ -1,6 +1,10 @@
 //Get list from DB
 var course_list = ['CS 232', 'CS 101', 'MT 201', 'ES 101', 'CE 112'];
 
+course_l=document.getElementById('script_data').innerHTML;
+
+console.log(course_l);
+
 //Store selected course
 var course_selected = 'N/A';
 

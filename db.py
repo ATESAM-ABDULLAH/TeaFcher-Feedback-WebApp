@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.schema import PrimaryKeyConstraint
 
-engine = create_engine('sqlite:///database.sqlite',echo=True)
+engine = create_engine('sqlite:///database.sqlite',echo=False)
 
 base = declarative_base()
 
@@ -122,11 +122,24 @@ class average(base):
 # Session=sessionmaker(bind=engine)
 # session=Session()
 
-# # Print all users
-# for x in session.query(user).all():
-#     print(x.name,x.email)
+# email='admin@giki.edu.pk'
+# password='0000'
+# type='admin'
 
-##   Add admin user
+# res = session.query(user).filter(user.email == email , user.password ==password ,user.type==type) 
+
+# x =[x for x in res]
+
+# print(x[0].name)
+# if(x):
+#     print(True)
+# else:
+#     print(False)
+# # # Print all users
+# # for x in session.query(user).all():
+# #     print(x.name,x.email)
+
+# #   Add admin user
 # tr=user(0,'admin','admin@giki.edu.pk','0000','admin')
 
 # session.add(tr)

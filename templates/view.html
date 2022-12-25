@@ -24,6 +24,8 @@
 </head>
 
 <body>
+    <span id="script_data" style="display: none;"> {{course | safe}}</span>
+
     <!-- Btn to logout to main -->
     <div class="logout">
         <button class="logout-btn">
@@ -40,8 +42,8 @@
         <!-- User Data to be called from DB -->
         <!-- currently called using prompts -->
         <div class="extra-data" id="user-data">
-            <p class="extra">Name : <span id="name">{js in here}</span></p>
-            <p class="extra">Email : <span id="email">{js in here}</span></p>
+            <p class="extra">Name : <span id="name" >{{name}}</span></p>
+            <p class="extra">Email : <span id="email">{{email}}</span></p>
             <p>-----------------------------------------------------------------------------------------------------------------------------------------------------
             </p>
         </div>

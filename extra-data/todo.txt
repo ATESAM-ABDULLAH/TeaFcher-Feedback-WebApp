@@ -1,7 +1,5 @@
-Make validation for duplicate data entry
+login working
+signup working
 
-Make insert for feedback , faculty access
 
-Make query for login ,admin view
 
-uninstall oracledb from main pc
