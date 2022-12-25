@@ -1,0 +1,12 @@
+webapp_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.ap-mumbai-1.oraclecloud.com))(connect_data=(service_name=gb25ae7b379b6d5_webapp_high.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.ap-mumbai-1.oraclecloud.com, OU=Oracle ADB INDIA, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+webapp_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.ap-mumbai-1.oraclecloud.com))(connect_data=(service_name=gb25ae7b379b6d5_webapp_low.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.ap-mumbai-1.oraclecloud.com, OU=Oracle ADB INDIA, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+webapp_medium = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.ap-mumbai-1.oraclecloud.com))(connect_data=(service_name=gb25ae7b379b6d5_webapp_medium.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.ap-mumbai-1.oraclecloud.com, OU=Oracle ADB INDIA, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+webapp_tp = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.ap-mumbai-1.oraclecloud.com))(connect_data=(service_name=gb25ae7b379b6d5_webapp_tp.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.ap-mumbai-1.oraclecloud.com, OU=Oracle ADB INDIA, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+webapp_tpurgent = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.ap-mumbai-1.oraclecloud.com))(connect_data=(service_name=gb25ae7b379b6d5_webapp_tpurgent.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.ap-mumbai-1.oraclecloud.com, OU=Oracle ADB INDIA, O=Oracle Corporation, L=Redwood City, ST=California, C=US")))
+
+
+
