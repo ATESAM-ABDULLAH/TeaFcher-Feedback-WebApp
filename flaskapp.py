@@ -1,11 +1,10 @@
 # Imports
 import db #File with database config
 
-from flask import Flask, render_template, url_for, request, redirect ,flash
-# from flask import session , session as session2 
+from flask import Flask, render_template, url_for, request, redirect
+from flask import session as student_data, session as faculty_data ,session as admin_data
 
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
 import random
 #-------------------------------------------------------------------------------------------------------
 
@@ -16,6 +15,8 @@ app.secret_key="hello" #used to encrypt sessions
 
 
 # Routes to diff pages
+
+#change courses passed into student and admin
 @app.route("/",methods=["GET","POST"])
 @app.route("/login",methods=["GET","POST"])
 def login():
@@ -43,29 +44,46 @@ def login():
                 ## fetch regno of student
                 regno= dbsession.query(db.student.regno).filter(db.student.s_id == id)
                 regno=regno[0].regno
-                return render_template('feedback.html',name=name,regno=regno,course=course)
+                ##pass data into session
+                student_data['id']=id
+                student_data['name']=name
+                student_data['regno']=regno
+                student_data['course']=course
+                ##redirect to student view
+                return redirect('/student')
 
             if (type =='faculty') :
                 ## fetch course of teacher
                 course =dbsession.query(db.faculty).filter(db.faculty.f_id == id)
                 course=course[0].course
-                return render_template('control.html',name=name,course=course)
+                ##pass data into session
+                faculty_data['id']=id
+                faculty_data['name']=name
+                faculty_data['course']=course
+                ##redirect to faculty view
+                return redirect('/faculty')
 
             if(type =='admin'):
                 ## pass in list of distinct courses
                 course=dbsession.query(db.faculty.course).distinct()#distinct courses
                 course=[x for x in course] #convert to tuple list
                 course=list(map(''.join,course)) #convert to normal list
+                ##pass data into session
+                admin_data['id']=id
+                admin_data['name']=name
+                admin_data['email']=email
+                admin_data['course']=course
+                ##redirect to admin view
+                return redirect('/admin')
 
-                return render_template('view.html',name=name,email=email,course=course)
-            
-            dbsession.commit()#end session
+            dbsession.commit()
         else:
-            return redirect("/login")
+            return redirect('/logout')
 
     else: #if viewing page
         return render_template('login.html')
 
+#DONE
 @app.route("/signup",methods=["GET","POST"])
 def signup():
     if request.method == 'POST': #if form is submitted
@@ -97,33 +115,101 @@ def signup():
                 tr2=db.faculty(id,course)
 
             dbsession.add_all({tr1,tr2})
-            dbsession.commit()
-        return redirect("/login")
+
+        dbsession.commit()
+        return redirect("/logout")
     else: #if viewing page
         return render_template('signup.html')
 
+# Not working currently
 @app.route("/student",methods=["GET","POST"])
 def student():
     print(request.form)
-    return render_template('feedback.html')
+    ##fetch data from session
+    id=student_data['id']
+    name=student_data['name']
+    course=student_data['course']
+    regno=student_data['regno']
+    ##render html
+    return render_template('feedback.html',name=name,regno=regno,course=course)
 
+# change dynmic list to 10 fix size
 @app.route("/faculty",methods=["GET","POST"])
 def faculty():
-    print(request.form)
-    return render_template('control.html')
 
+    ##fetch data from session
+    id=faculty_data['id']
+    name=faculty_data['name']
+    course=faculty_data['course']
+
+    print(request.form)
+
+    if(request.method == 'POST'):#form submitted
+        std1=request.form.get('std-1')
+        std2=request.form.get('std-2')
+        std3=request.form.get('std-3')
+        std4=request.form.get('std-4')
+        std5=request.form.get('std-5')
+        std6=request.form.get('std-6')
+        std7=request.form.get('std-7')
+        std8=request.form.get('std-8')
+        std9=request.form.get('std-9')
+        std10=request.form.get('std-10')
+
+        list_students=[std1,std2,std3,std4,std5,std6,std7,std8,std9,std10]#used for looping over
+
+        #make db session
+        session=sessionmaker(bind=db.engine)
+        dbsession=session()
+
+        #if (s_id,f_id) pair not in table ->add
+        #else : ignore
+
+        for regno in list_students:
+            if(regno != ''):#record not empty
+                
+                try:
+                    #find s_id for reg -> already signedup
+                    s_id=dbsession.query(db.student.s_id).filter(db.student.regno == regno)
+                    s_id=[x for x in s_id]#turn into list of tuples
+                    s_id=s_id[0][0]#unpack tuple
+
+                    #check if s_id,f_id pair exists
+                    x = dbsession.query(db.feedback).filter(db.feedback.s_id == s_id , db.feedback.f_id == id)
+                    x=[x for x in x]#turn into list
+
+                    if(not x):#not exists
+                        print(regno,s_id,id,course)
+                        tr=db.feedback(s_id,id,course)
+                        dbsession.add(tr)
+                except:
+                    continue
+
+        dbsession.commit()
+        return redirect('/logout')
+    else:#viewing html page
+        return render_template('control.html',name=name,course=course)
+
+#add function to pull data from averages
 @app.route("/admin",methods=["GET","POST"])
 def admin():
     print(request.form)
-    return render_template('view.html')
+    ## fetch data from session
+    id=admin_data['id']
+    name=admin_data['name']
+    email=admin_data['email']
+    course=admin_data['course']
+    ##render html
+    return render_template('view.html',name=name,email=email,course=course)
 
 #-----------------------------------------------------------------------------------------------------
 
 @app.route("/logout")
 def logout():
     #clear sessions
-    # session.clear()
-    # session2.clear()
+    student_data.clear()
+    faculty_data.clear()
+    admin_data.clear()
     return redirect("/login")#redirect to login
 
 # -----------------------------------------------------------------------------------------

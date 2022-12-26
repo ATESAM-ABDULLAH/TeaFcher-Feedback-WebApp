@@ -40,37 +40,57 @@
         <p class="extra-data">Course: <span id="course">{{course}}</span></p>
         <p>---------------------------------------------------------------------------</p>
 
-        <div class="db-data right">
-            <!-- Add a student input -->
-            <button id="add-student" class="btn-add" onclick="add()">
-                <i class="tiny material-icons">add</i>
-            </button>
+        <form id="form-list" method="post" action="#">
 
-            <!-- Remove a student input -->
-            <button id="remove-student" class="btn-remove " onclick="remove()">
-                <i class="small material-icons">delete</i>
-            </button>
-        </div>
-
-
-        <form id="form-list" method="post">
-
-            <!-- stores the total no of students -->
-            <input type="hidden" value="1" id="t_students">
-
+            <!-- List of 10 students atleast one is required -->
             <ol id="list-std">
 
-                <!-- 1 student is preset -->
                 <li id="grp-1">
                     <label for="std-1" id="label-1">Reg #</label>
-                    <input type="number" name="std-1" id="std-1" min='2019000' max='2022999' placeholder="2021114">
+                    <input type="number" name="std-1" id="std-1" min='2019000' max='2022999' placeholder="2021114"
+                        required>
                 </li>
-
+                <li id="grp-1">
+                    <label for="std-2" id="label-2">Reg #</label>
+                    <input type="number" name="std-2" id="std-2" min='2019000' max='2022999' placeholder="2021197">
+                </li>
+                <li id="grp-1">
+                    <label for="std-3" id="label-3">Reg #</label>
+                    <input type="number" name="std-3" id="std-3" min='2019000' max='2022999' placeholder="2021421">
+                </li>
+                <li id="grp-1">
+                    <label for="std-4" id="label-4">Reg #</label>
+                    <input type="number" name="std-4" id="std-4" min='2019000' max='2022999' placeholder="2021493">
+                </li>
+                <li id="grp-1">
+                    <label for="std-5" id="label-5">Reg #</label>
+                    <input type="number" name="std-5" id="std-5" min='2019000' max='2022999' placeholder="2021624">
+                </li>
+                <li id="grp-1">
+                    <label for="std-6" id="label-6">Reg #</label>
+                    <input type="number" name="std-6" id="std-6" min='2019000' max='2022999' placeholder="2021519">
+                </li>
+                <li id="grp-1">
+                    <label for="std-7" id="label-7">Reg #</label>
+                    <input type="number" name="std-7" id="std-7" min='2019000' max='2022999' placeholder="2021234">
+                </li>
+                <li id="grp-1">
+                    <label for="std-8" id="label-8">Reg #</label>
+                    <input type="number" name="std-8" id="std-8" min='2019000' max='2022999' placeholder="2021493">
+                </li>
+                <li id="grp-1">
+                    <label for="std-9" id="label-9">Reg #</label>
+                    <input type="number" name="std-9" id="std-9" min='2019000' max='2022999' placeholder="2021435">
+                </li>
+                <li id="grp-1">
+                    <label for="std-10" id="label-10">Reg #</label>
+                    <input type="number" name="std-10" id="std-10" min='2019000' max='2022999' placeholder="2021527">
+                </li>
             </ol>
 
             <div class="right">
                 <!-- form submit -->
-                <button type="submit" id="submit" class="btn-submit" onclick="sendData()">DONE</button>
+                <button type="submit" id="submit" class="btn-submit">DONE</button>
 
                 <!-- form reset -->
                 <button type="reset" id="reset-button" class="btn-reset">RESET</button>
