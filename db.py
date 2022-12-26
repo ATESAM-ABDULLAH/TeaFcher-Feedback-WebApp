@@ -72,7 +72,27 @@ class feedback(base):
         self.f_id=f_id
         self.course=course
 
+# Table for average
+class average(base):
+    __tablename__="average"
 
+    f_id=Column(Integer,primary_key=True)
+    q1=Column(Integer)
+    q2=Column(Integer)
+    q3=Column(Integer)
+    q4=Column(Integer)
+    q5=Column(Integer)
+    q6=Column(Integer)
+    q7=Column(Integer)
+    q8=Column(Integer)
+    q9=Column(Integer)
+    q10=Column(Integer)
+    q11=Column(Integer)
+    rating=Column(Integer)
+
+    def __init__(self,f_id):
+        self.f_id=f_id
+            
 # Session to enter data into DB
 
 # Session=sessionmaker(bind=engine)

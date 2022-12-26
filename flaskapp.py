@@ -8,14 +8,14 @@ from sqlalchemy.orm import sessionmaker
 import random
 #-------------------------------------------------------------------------------------------------------
 
-# main app 
+# main app
 app=Flask(__name__)
 app.secret_key="hello" #used to encrypt sessions
 
 
+###  ROUTES FOR PAGES
 
-# Routes to diff pages
-
+#DONE
 @app.route("/",methods=["GET","POST"])
 @app.route("/login",methods=["GET","POST"])
 def login():
@@ -120,7 +120,7 @@ def signup():
     else: #if viewing page
         return render_template('signup.html')
 
-# DONE
+#DONE
 @app.route("/student",methods=["GET","POST"])
 def student():
     ##fetch data from session
@@ -172,7 +172,7 @@ def student():
     else:#if viewing page only
         return render_template('feedback.html',name=name,regno=regno,course=course)
 
-# DONE
+#DONE
 @app.route("/faculty",methods=["GET","POST"])
 def faculty():
 
@@ -233,17 +233,93 @@ def faculty():
 #add function to pull data from averages
 @app.route("/admin",methods=["GET","POST"])
 def admin():
-    print(request.form)
     ## fetch data from session
     id=admin_data['id']
     name=admin_data['name']
     email=admin_data['email']
     course=admin_data['course']
-    ##render html
-    return render_template('view.html',name=name,email=email,course=course)
+
+    print(request.form)
+
+    if(request.method == 'POST'):#if form submitted
+        #get info from form
+        course_sel=request.form.get('course-no') 
+
+        #function to update table average
+        update_average(course_sel)
+
+        #get avg data from db
+        session=sessionmaker(bind=db.engine)
+        dbsession=session()
+
+        #find f_id of course selected
+        f_id=dbsession.query(db.faculty.f_id).filter(db.faculty.course == course)
+        f_id=[x for x in f_id]
+        f_id=f_id[0][0]
+
+        #get avg from db for f_id
+
+        #pass list python->html->js
+
+        #make js function to change graph data
+
+        return render_template('view.html',name=name,email=email,course=course)
+    else:#if viewing page
+        return render_template('view.html',name=name,email=email,course=course)
 
 #-----------------------------------------------------------------------------------------------------
 
+#function to update average of given course
+def update_average(course):
+    #make db sessio 
+    session= sessionmaker(bind=db.engine)
+    ses=session()
+
+    #find f_id for course selected
+    f_id=ses.query(db.faculty.f_id).filter(db.faculty.course == course)
+    f_id=[x for x in f_id]
+    f_id=f_id[0][0]
+
+    #if f_id not in table average add it
+    x=ses.query(db.average).filter(db.average.f_id == f_id)
+    x=[x for x in x]
+    if( not x):
+        tr=db.average(f_id)
+        ses.add(tr)
+        ses.commit()
+
+    #query of all avg for selected course
+    res=ses.query(\
+        func.avg(db.feedback.q1),func.avg(db.feedback.q2),func.avg(db.feedback.q3)\
+        ,func.avg(db.feedback.q4),func.avg(db.feedback.q5),func.avg(db.feedback.q6)\
+        ,func.avg(db.feedback.q7),func.avg(db.feedback.q8),func.avg(db.feedback.q9)\
+        ,func.avg(db.feedback.q10),func.avg(db.feedback.q11),func.avg(db.feedback.rating))\
+        .filter(db.feedback.course == course)
+
+    res=[x for x in res]#turn into list
+    res=res[0]
+
+    #individual items in list
+    q1=res[0]
+    q2=res[1]
+    q3=res[2]
+    q4=res[3]
+    q5=res[4]
+    q6=res[5]
+    q7=res[6]
+    q8=res[7]
+    q9=res[8]
+    q10=res[9]
+    q11=res[10]
+    rating=res[11]
+
+    #update table average (f_id always present)
+    ses.query(db.average).filter(db.average.f_id == f_id)\
+                .update({'q1':q1,'q2':q2,'q3':q3,'q4':q4,'q5':q5,'q6':q6,'q7':q7,'q8':q8\
+                    ,'q9':q9,'q10':q10,'q11':q11,'rating':rating})
+    ses.commit()
+
+#route to clear session and return to main
 @app.route("/logout")
 def logout():
     #clear sessions

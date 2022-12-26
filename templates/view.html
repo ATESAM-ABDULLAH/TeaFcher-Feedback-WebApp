@@ -29,6 +29,10 @@
         const courses = {{ course | tojson}}
         console.log(courses)
         fetch_courses(courses)
+
+        const course_selected={{course_sel | tojson}}
+        console.log(course_selected)
+        select_option(course_selected) //option selected from dropdown
     </script>
 
     <!-- Btn to logout to main -->
@@ -77,7 +81,7 @@
 
 
         <!-- To get data from DB -->
-        <form id="survey" method="post">
+        <form id="survey" method="post" action="#">
             <!-- Dropdown to select Course to be viewed -->
             <label for="dropdown" class="dropdown-label">Select Course :</label>
             <select name="course-no" id="dropdown" class="course-no">
@@ -86,7 +90,7 @@
                 <!-- currently options are being called from JS file -->
             </select>
 
-            <button type="button" id="btn-submit" class="right" onClick="callChart()">View</button>
+            <button type="submit" id="btn-submit" class="right" onClick="callChart()">View</button>
 
             <button type="reset" id="btn-reset" class="right" onClick="reset_data()">Reset
 
