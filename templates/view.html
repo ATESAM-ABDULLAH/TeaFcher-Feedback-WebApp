@@ -24,7 +24,12 @@
 </head>
 
 <body>
-    <span id="script_data" style="display: none;"> {{course | safe}}</span>
+    <!-- Pull python var into HTML and send to JS -->
+    <script>
+        const courses = {{ course | tojson}}
+        console.log(courses)
+        fetch_courses(courses)
+    </script>
 
     <!-- Btn to logout to main -->
     <div class="logout">
@@ -42,7 +47,7 @@
         <!-- User Data to be called from DB -->
         <!-- currently called using prompts -->
         <div class="extra-data" id="user-data">
-            <p class="extra">Name : <span id="name" >{{name}}</span></p>
+            <p class="extra">Name : <span id="name">{{name}}</span></p>
             <p class="extra">Email : <span id="email">{{email}}</span></p>
             <p>-----------------------------------------------------------------------------------------------------------------------------------------------------
             </p>

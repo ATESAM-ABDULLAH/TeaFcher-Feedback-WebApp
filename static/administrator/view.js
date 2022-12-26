@@ -1,9 +1,11 @@
 //Get list from DB
-var course_list = ['CS 232', 'CS 101', 'MT 201', 'ES 101', 'CE 112'];
+var course_list = [];
 
-course_l=document.getElementById('script_data').innerHTML;
+function fetch_courses(course)
+{
+    course_list = course;
+}
 
-console.log(course_l);
 
 //Store selected course
 var course_selected = 'N/A';

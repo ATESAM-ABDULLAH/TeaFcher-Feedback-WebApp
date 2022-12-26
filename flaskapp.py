@@ -31,20 +31,33 @@ def login():
         res =dbsession.query(db.user).filter(db.user.email==email ,db.user.password==password,db.user.type==type)
         x=[x for x in res]
 
-        if(x):
+        if(x):#if user valid
             name =x[0].name #user name
-            if(type =='student'):
-                course=[] #enroled courses
-                regno= dbsession.query(db.student.regno).filter(db.student.s_id == id)
-                return render_template('student.html',name=name,regno=regno)
-            if (type =='faculty') :
-                course =dbsession.query(db.faculty.course).filter(db.faculty.f_id == id)
-                return render_template('faculty.html',name=name,course=course)
-            if(type =='admin'):
-                # res=dbsession.query(db.feedback.course).distinct()
-                # course=[x for x in res] #distinct courses
+            id=x[0].u_id    #user id
 
-                return render_template('view.html',name=name,email=email)
+            if(type =='student'):
+                ## fetch list of enrolled courses from feedback table
+                course=[] 
+                ## fetch regno of student
+                regno= dbsession.query(db.student.regno).filter(db.student.s_id == id)
+                regno=regno[0].regno
+                return render_template('feedback.html',name=name,regno=regno)
+
+            if (type =='faculty') :
+                ## fetch course of teacher
+                course =dbsession.query(db.faculty).filter(db.faculty.f_id == id)
+                course=course[0].course
+                return render_template('control.html',name=name,course=course)
+
+            if(type =='admin'):
+                ## pass in list of distinct courses
+                course=dbsession.query(db.faculty.course).distinct()#distinct courses
+                course=[x for x in course] #convert to tuple list
+                course=list(map(''.join,course)) #convert to normal list
+
+                return render_template('view.html',name=name,email=email,course=course)
+            
+            dbsession.commit()#end session
         else:
             return redirect("/login")
 
