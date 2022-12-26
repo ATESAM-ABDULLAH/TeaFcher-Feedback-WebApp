@@ -3,7 +3,6 @@
 A feedback portal built using HTML, CSS, PYTHON and JAVASCRIPT.
 
 
-
 ## ⭐Synopsis
 The main objective of the Teacher Feedback System is to provide the students of the institute access to an interface where they can give feedback about their courses and course instructors. The system is built for the administrative end thus the administrator has access to it. This project is developed to provide feedback in a quick , easy and incognito manner.
 ## ⭐Features
