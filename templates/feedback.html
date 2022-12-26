@@ -16,6 +16,12 @@
 
 <body class="container">
 
+  <script>
+    const courses={{course | tojson}}
+    console.log(courses)
+    fetch_courses(courses)
+  </script>
+
   <!-- Btn to logout to main -->
   <div class="logout">
     <button class="logout-btn">

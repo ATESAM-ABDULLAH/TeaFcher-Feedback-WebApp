@@ -1,6 +1,10 @@
-//Get list from DB
-const course_list = ['CS 232', 'CS 101', 'MT 201', 'ES 101', 'CE 112'];
+//List of enrolled courses
+var course_list = [];
 
+//fetch courses from feedback
+function fetch_courses(course) {
+    course_list = course;
+}
 
 //Store selected course
 var course_selected = 'N/A';

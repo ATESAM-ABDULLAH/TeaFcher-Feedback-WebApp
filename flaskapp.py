@@ -37,11 +37,13 @@ def login():
 
             if(type =='student'):
                 ## fetch list of enrolled courses from feedback table
-                course=[] 
+                course=dbsession.query(db.faculty.course)#.filter(db.feedback.s_id == id)
+                course=[x for x in course]
+                course = list(map(''.join,course)) 
                 ## fetch regno of student
                 regno= dbsession.query(db.student.regno).filter(db.student.s_id == id)
                 regno=regno[0].regno
-                return render_template('feedback.html',name=name,regno=regno)
+                return render_template('feedback.html',name=name,regno=regno,course=course)
 
             if (type =='faculty') :
                 ## fetch course of teacher

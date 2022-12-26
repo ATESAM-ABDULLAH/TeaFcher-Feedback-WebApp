@@ -48,7 +48,7 @@ class faculty(base):
 class feedback(base):
     __tablename__="feedback"
 
-    u_id=Column(Integer)
+    s_id=Column(Integer)
     f_id=Column(Integer)
     course=Column(String(6))
     q1=Column(Integer)
@@ -65,7 +65,7 @@ class feedback(base):
     rating=Column(Integer)
     comment=Column(String(500))
 
-    __table_args__=(PrimaryKeyConstraint(u_id,f_id),{})
+    __table_args__=(PrimaryKeyConstraint(s_id,f_id),{})
 
     def __init__(self,u_id,f_id,course,q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,rating,comment):
         self.u_id=u_id
@@ -125,23 +125,8 @@ class average(base):
 # email='admin@giki.edu.pk'
 # password='0000'
 # type='admin'
-
-# res = session.query(user).filter(user.email == email , user.password ==password ,user.type==type) 
-
-# x =[x for x in res]
-
-# print(x[0].name)
-# if(x):
-#     print(True)
-# else:
-#     print(False)
-# # # Print all users
-# # for x in session.query(user).all():
-# #     print(x.name,x.email)
-
-# #   Add admin user
+# # #   Add admin user
 # tr=user(0,'admin','admin@giki.edu.pk','0000','admin')
-
 # session.add(tr)
 # session.commit()
 
