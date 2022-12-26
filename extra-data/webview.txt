@@ -14,7 +14,7 @@
         password,confirm_password,  ->string (4)
         type,                       ->string(10)
         1)student:
-            regno                   ->text (7 char)
+            regno                   ->text (7 char)   2019000<x<2022999
         2)teacher:                                      ----->one teacher per course  
             course no               ->text (6 char)
 
@@ -44,7 +44,7 @@
         1)Teacher data:                             ----->get from DB
             Name,               ->text
             Course              ->text
-        2)Students List:                            ----->add list of students to DB on submit 
+        2)Students List:         MAX 10 students/faculty     ----->add regnos into list 
             Regno               ->int
 }
 

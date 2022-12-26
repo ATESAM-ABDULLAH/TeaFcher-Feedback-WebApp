@@ -16,7 +16,6 @@ app.secret_key="hello" #used to encrypt sessions
 
 # Routes to diff pages
 
-#change courses passed into student and admin
 @app.route("/",methods=["GET","POST"])
 @app.route("/login",methods=["GET","POST"])
 def login():
@@ -38,7 +37,7 @@ def login():
 
             if(type =='student'):
                 ## fetch list of enrolled courses from feedback table
-                course=dbsession.query(db.faculty.course)#.filter(db.feedback.s_id == id)
+                course=dbsession.query(db.feedback.course).filter(db.feedback.s_id == id)#.filter(db.feedback.s_id == id)
                 course=[x for x in course]
                 course = list(map(''.join,course)) 
                 ## fetch regno of student
@@ -65,7 +64,7 @@ def login():
 
             if(type =='admin'):
                 ## pass in list of distinct courses
-                course=dbsession.query(db.faculty.course).distinct()#distinct courses
+                course=dbsession.query(db.feedback.course).distinct()#distinct courses
                 course=[x for x in course] #convert to tuple list
                 course=list(map(''.join,course)) #convert to normal list
                 ##pass data into session
@@ -121,19 +120,59 @@ def signup():
     else: #if viewing page
         return render_template('signup.html')
 
-# Not working currently
+# DONE
 @app.route("/student",methods=["GET","POST"])
 def student():
-    print(request.form)
     ##fetch data from session
     id=student_data['id']
     name=student_data['name']
-    course=student_data['course']
     regno=student_data['regno']
-    ##render html
-    return render_template('feedback.html',name=name,regno=regno,course=course)
 
-# change dynmic list to 10 fix size
+    print(request.form)
+
+    if (request.method =='POST'):
+        #get info from form
+        course=request.form.get('course-no')
+        q1=request.form.get('q1')
+        q2=request.form.get('q2')
+        q3=request.form.get('q3')
+        q4=request.form.get('q4')
+        q5=request.form.get('q5')
+        q6=request.form.get('q6')
+        q7=request.form.get('q7')
+        q8=request.form.get('q8')
+        q9=request.form.get('q9')
+        q10=request.form.get('q10')
+        q11=request.form.get('q11')
+        rating=request.form.get('rating')
+        comment=request.form.get('comment')
+        
+        #make db session
+        session=sessionmaker(bind=db.engine)
+        dbsession=session()
+
+        #get f_id for course
+        f_id=dbsession.query(db.faculty.f_id).filter(db.faculty.course == course)
+        f_id=[x for x in f_id]
+        f_id=f_id[0][0]
+
+        #check if user is in feedback
+        x=dbsession.query(db.feedback).filter(db.feedback.s_id==id , db.feedback.f_id==f_id)
+        x=[x for x in x]
+
+        if(x):#if exists
+            dbsession.query(db.feedback).filter(db.feedback.s_id==id, db.feedback.f_id==f_id \
+                ,db.feedback.course == course)\
+                .update({'q1':q1,'q2':q2,'q3':q3,'q4':q4,'q5':q5,'q6':q6,'q7':q7,'q8':q8\
+                    ,'q9':q9,'q10':q10,'q11':q11,'rating':rating,'comment':comment})
+            
+        dbsession.commit()
+
+        return redirect('/logout')
+    else:#if viewing page only
+        return render_template('feedback.html',name=name,regno=regno,course=course)
+
+# DONE
 @app.route("/faculty",methods=["GET","POST"])
 def faculty():
 
@@ -145,6 +184,7 @@ def faculty():
     print(request.form)
 
     if(request.method == 'POST'):#form submitted
+        #get info from form
         std1=request.form.get('std-1')
         std2=request.form.get('std-2')
         std3=request.form.get('std-3')
