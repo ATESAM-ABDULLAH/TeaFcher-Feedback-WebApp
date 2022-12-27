@@ -1,14 +1,16 @@
-//Get list from DB
+//Store list of distinct courses
 var course_list = [];
-
-function fetch_courses(course)
-{
+//Get list from DB>Python>HTML
+function fetch_courses(course) {
     course_list = course;
 }
 
 
-//Store selected course
-var course_selected = 'N/A';
+var course_selected = '';
+function update_course_selected(course) {
+    console.log('updating course')
+    course_selected = course;
+}
 
 
 //!!! CALL to DB at before page loads
@@ -22,8 +24,6 @@ function populate_dropdown() {
 
         var course = course_list[i];//course in list
 
-        //console.log(course);//work
-
         //new option to be added
         var new_option = "<option value='" + course + "' id='" + course + "')>" + course + "</option>";
 
@@ -32,39 +32,35 @@ function populate_dropdown() {
     }
 }
 
-//temporary -> graph data
+//Graph data - template
 var graph_data = {
     header: ["Question #", "Avg answer"],
     rows: [
-        // get data from function random_data()
+        //Add course avergae data here
     ]
 };
 
-//temporary -> create random values for graph_data
-function random_data(obj)//
-{
-    for (let i = 0; i < 12; i++) {
-        var randint = Math.random() * 5;
-        // console.log(randint);
+//Update graph_data using received list
+function update_graph_data(avg_list) {
+    graph_data.rows.push(['Q1'], avg_list[0]);
+    graph_data.rows.push(['Q2'], avg_list[1]);
+    graph_data.rows.push(['Q3'], avg_list[2]);
+    graph_data.rows.push(['Q4'], avg_list[3]);
+    graph_data.rows.push(['Q5'], avg_list[4]);
+    graph_data.rows.push(['Q6'], avg_list[5]);
+    graph_data.rows.push(['Q7'], avg_list[6]);
+    graph_data.rows.push(['Q8'], avg_list[7]);
+    graph_data.rows.push(['Q9'], avg_list[8]);
+    graph_data.rows.push(['Q10'], avg_list[9]);
+    graph_data.rows.push(['Q11'], avg_list[10]);
+    graph_data.rows.push(['Rating'], avg_list[11]);
 
-        // 10 normal questions 0-9 
-        if (i < 11) {
-            obj.rows.push(["q" + (i + 1) + "", randint]);
-        }
-
-        //Teacher rating question 10
-        if (i == 11) {
-            obj.rows.push(["Teacher Rating", randint]);
-        }
-
-        console.log(obj.rows[i]);
-    }
-
-    return obj;
 };
 
 // Create graph
 function make_chart(DB_data) {
+
+    console.log('Making graph')
 
     // get data -> used DB in future
     var data = DB_data;
@@ -80,7 +76,6 @@ function make_chart(DB_data) {
 
     //draw chart
     chart.draw();
-
 
     //Axis labels
     chart.xAxis().title("Questions");
@@ -110,29 +105,10 @@ function make_chart(DB_data) {
 //MAIN function for calling data + making graph
 function callChart() {
 
-    //get the drop down 
-    const dropdown = document.getElementById("dropdown");
-    value = dropdown.value;//value is the value of dropdown selected
-
-
-    if (value != "")//if an option is selected
-    {
-        //update course_selected
-        course_selected = value;
-
-        // course data 
-        document.getElementById("teacher").innerHTML = "DB data";//get data from db here
-        document.getElementById("course").innerHTML = course_selected;
-
-        //erase previous graph if any
-        document.getElementById("graph-container").innerHTML = "";
-
-        // Call data from database here
-        var data = random_data(graph_data);//currently random data
-
-        //create chart
-        make_chart(data);
+    if (course_selected != '') {
+        make_chart(graph_data)
     }
+    console.log('nothing selected')
 }
 
 //function to reset graph and course data

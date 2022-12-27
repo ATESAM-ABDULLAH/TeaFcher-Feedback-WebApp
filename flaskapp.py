@@ -1,10 +1,14 @@
 # Imports
 import db #File with database config
 
+#imports for Flask
 from flask import Flask, render_template, url_for, request, redirect
 from flask import session as student_data, session as faculty_data ,session as admin_data
 
+#imports for SqlAlchemy
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.sql import func
+
 import random
 #-------------------------------------------------------------------------------------------------------
 
@@ -127,6 +131,7 @@ def student():
     id=student_data['id']
     name=student_data['name']
     regno=student_data['regno']
+    course_enrolled=student_data['course']
 
     print(request.form)
 
@@ -170,7 +175,7 @@ def student():
 
         return redirect('/logout')
     else:#if viewing page only
-        return render_template('feedback.html',name=name,regno=regno,course=course)
+        return render_template('feedback.html',name=name,regno=regno,course=course_enrolled)
 
 #DONE
 @app.route("/faculty",methods=["GET","POST"])
@@ -234,7 +239,7 @@ def faculty():
 @app.route("/admin",methods=["GET","POST"])
 def admin():
     ## fetch data from session
-    id=admin_data['id']
+    # id=admin_data['id']
     name=admin_data['name']
     email=admin_data['email']
     course=admin_data['course']
@@ -242,6 +247,9 @@ def admin():
     print(request.form)
 
     if(request.method == 'POST'):#if form submitted
+        if(course == []):#empty list
+            return redirect('/logout')
+
         #get info from form
         course_sel=request.form.get('course-no') 
 
@@ -253,19 +261,31 @@ def admin():
         dbsession=session()
 
         #find f_id of course selected
-        f_id=dbsession.query(db.faculty.f_id).filter(db.faculty.course == course)
+        f_id=dbsession.query(db.faculty.f_id).filter(db.faculty.course == course_sel)
         f_id=[x for x in f_id]
         f_id=f_id[0][0]
 
+        #get teacher name for course_selected
+        faculty = dbsession.query(db.user.name).filter(db.user.u_id == f_id)
+        faculty =[x for x in faculty]
+        faculty =faculty[0][0]
+
         #get avg from db for f_id
+        res = dbsession.query(\
+                db.average.q1,db.average.q2,db.average.q3,db.average.q4,db.average.q5\
+                ,db.average.q6,db.average.q7,db.average.q8,db.average.q9,db.average.q10\
+                ,db.average.q11,db.average.rating).filter(db.average.f_id == f_id )
+        res=[x for x in res]#convert into list of rows
+        res=res[0]#convert into 1 row
+        res=[x for x in res]#convrt row to list
 
         #pass list python->html->js
-
+        course_avg = res
         #make js function to change graph data
 
-        return render_template('view.html',name=name,email=email,course=course)
+        return render_template('view.html',name=name,email=email,course=course,course_sel=course_sel,teacher=faculty,course_avg=course_avg)
     else:#if viewing page
-        return render_template('view.html',name=name,email=email,course=course)
+        return render_template('view.html',name=name,email=email,course=course,course_sel= '',teacher='',course_avg=[])
 
 #-----------------------------------------------------------------------------------------------------
 

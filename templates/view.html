@@ -30,9 +30,15 @@
         console.log(courses)
         fetch_courses(courses)
 
-        const course_selected={{course_sel | tojson}}
-        console.log(course_selected)
-        select_option(course_selected) //option selected from dropdown
+        const course_sel2 = {{ course_sel | tojson}}
+        console.log(course_sel2)
+        update_course_selected(course_sel2)
+
+        const course_avg_list = {{ course_avg | tojson}}
+        console.log(course_avg_list)
+        update_graph_data(course_avg_list) //update graph data list
+
+        callChart()//function to make chart
     </script>
 
     <!-- Btn to logout to main -->
@@ -98,8 +104,8 @@
         </form>
 
         <div class="extra" id="extra">
-            <p>Teacher: <span id="teacher">___</span></p>
-            <p>Course: <span id="course">___</span></p>
+            <p>Teacher: <span id="teacher">{{teacher}}</span></p>
+            <p>Course: <span id="course">{{course_sel}}</span></p>
         </div>
 
         <div class="data" id="graph-container"></div>
