@@ -93,15 +93,11 @@ class average(base):
     def __init__(self,f_id):
         self.f_id=f_id
             
-# Session to enter data into DB
-
+# # Session to enter data into DB
 # Session=sessionmaker(bind=engine)
 # session=Session()
 
-# email='admin@giki.edu.pk'
-# password='0000'
-# type='admin'
-# # #   Add admin user
+# #   Add admin user
 # tr=user(0,'admin','admin@giki.edu.pk','0000','admin')
 # session.add(tr)
 # session.commit()

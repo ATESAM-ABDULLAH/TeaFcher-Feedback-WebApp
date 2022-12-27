@@ -173,7 +173,8 @@ def student():
             
         dbsession.commit()
 
-        return redirect('/logout')
+        #Redirect to same page till logout
+        return redirect('/student')
     else:#if viewing page only
         return render_template('feedback.html',name=name,regno=regno,course=course_enrolled)
 
@@ -282,6 +283,8 @@ def admin():
         #pass list python->html->js
         course_avg = res
         #make js function to change graph data
+
+        #make sure graph is being made
 
         return render_template('view.html',name=name,email=email,course=course,course_sel=course_sel,teacher=faculty,course_avg=course_avg)
     else:#if viewing page

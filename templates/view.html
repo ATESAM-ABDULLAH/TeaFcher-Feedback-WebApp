@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Charts js  -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- anycharts for easy to understand BAR graph -->
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
 
@@ -33,12 +36,6 @@
         const course_sel2 = {{ course_sel | tojson}}
         console.log(course_sel2)
         update_course_selected(course_sel2)
-
-        const course_avg_list = {{ course_avg | tojson}}
-        console.log(course_avg_list)
-        update_graph_data(course_avg_list) //update graph data list
-
-        callChart()//function to make chart
     </script>
 
     <!-- Btn to logout to main -->
@@ -108,9 +105,17 @@
             <p>Course: <span id="course">{{course_sel}}</span></p>
         </div>
 
-        <div class="data" id="graph-container"></div>
+        <!-- Div to display graph -->
+        <div>
+            <canvas id="graph"></canvas>
+        </div>
 
 
+        <script>
+            const course_avg_list = {{ course_avg | tojson}}
+            console.log(course_avg_list)
+            callChart(course_avg_list) //update graph data list
+        </script>
     </div>
 
 </body>
