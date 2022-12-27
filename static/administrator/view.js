@@ -93,5 +93,5 @@ function reset_data() {
     document.getElementById("teacher").innerHTML = "____";
     document.getElementById("course").innerHTML = "____";
     //erase previous graph if any
-    document.getElementById("graph").innerHTML = "";
+    document.getElementById("graph-container").innerHTML = "";
 }

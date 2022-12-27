@@ -236,7 +236,7 @@ def faculty():
     else:#viewing html page
         return render_template('control.html',name=name,course=course)
 
-#add function to pull data from averages
+#DONE
 @app.route("/admin",methods=["GET","POST"])
 def admin():
     ## fetch data from session
