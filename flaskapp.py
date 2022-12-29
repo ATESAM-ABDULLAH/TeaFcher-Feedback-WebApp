@@ -131,7 +131,7 @@ def student():
     id=student_data['id']
     name=student_data['name']
     regno=student_data['regno']
-    course_enrolled=student_data['course']
+    courses_enrolled=student_data['course']
 
     print(request.form)
 
@@ -176,7 +176,7 @@ def student():
         #Redirect to same page till logout
         return redirect('/student')
     else:#if viewing page only
-        return render_template('feedback.html',name=name,regno=regno,course=course_enrolled)
+        return render_template('feedback.html',name=name,regno=regno,course=courses_enrolled)
 
 #DONE
 @app.route("/faculty",methods=["GET","POST"])

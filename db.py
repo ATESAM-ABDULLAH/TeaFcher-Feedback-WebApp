@@ -63,7 +63,7 @@ class feedback(base):
     q10=Column(Integer)
     q11=Column(Integer)
     rating=Column(Integer)
-    comment=Column(String(500))
+    comment=Column(String(500))#70-120 words
 
     __table_args__=(PrimaryKeyConstraint(s_id,f_id),{})
 
