@@ -94,9 +94,9 @@ END;
 
 --Call update_average when admin requests data
 begin
-    update_average('CS 221');
+    update_average('MT 201');
 end;
 /
-
+select * from average;
 --fetch average from table to show admin
 create view admin_view as (select * from average where f_id=3);
