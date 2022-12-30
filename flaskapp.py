@@ -63,7 +63,7 @@ def login():
                 faculty_data['id']=id
                 faculty_data['name']=name
                 faculty_data['course']=course
-                ##redirect to faculty view
+                ##redirect to faculty viewx)
                 return redirect('/faculty')
 
             if(type =='admin'):
@@ -245,7 +245,6 @@ def admin():
     email=admin_data['email']
     course=admin_data['course']
 
-    print(request.form)
 
     if(request.method == 'POST'):#if form submitted
         if(course == []):#empty list
