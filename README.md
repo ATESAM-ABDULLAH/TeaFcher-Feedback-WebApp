@@ -32,3 +32,5 @@ The main objective of the Teacher Feedback System is to provide the students of 
 ## ➡Get started
 import flask, sqlalchemy
 python run flaskapp.py
+
+## COMPLETED/MARKED
