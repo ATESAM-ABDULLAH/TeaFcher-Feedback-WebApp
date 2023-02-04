@@ -30,7 +30,19 @@ The main objective of the Teacher Feedback System is to provide the students of 
 - Backend setup
 
 ## ➡Get started
-import flask, sqlalchemy
-python run flaskapp.py
+- Python 3.x
+- pip (Python package manager)
 
+# Installing Flask and SQLAlchemy
+
+Open a terminal or command prompt and run the following command to install Flask and SQLAlchemy:
+    pip install flask sqlalchemy
+    
+# Running the Application
+
+1. Open a terminal or command prompt and navigate to the directory where your Flask application is saved.
+
+2. Run following command in terminal.
+    python flaskapp.py
+    
 ## COMPLETED/MARKED
