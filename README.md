@@ -25,10 +25,6 @@ The main objective of the Teacher Feedback System is to provide the students of 
 ## Admin data page
 ![WhatsApp Image 2022-12-23 at 9 16 57 PM](https://user-images.githubusercontent.com/96631518/209461440-dde51224-9a20-44c1-90ac-efc4db0d281a.jpeg)
 
-## 💻Setup
-- Frontend setup
-- Backend setup
-
 ## ➡Get started
 - Python 3.x
 - pip (Python package manager)
@@ -36,13 +32,19 @@ The main objective of the Teacher Feedback System is to provide the students of 
 # Installing Flask and SQLAlchemy
 
 Open a terminal or command prompt and run the following command to install Flask and SQLAlchemy:
-    pip install flask sqlalchemy
+```pip install flask sqlalchemy```
     
 # Running the Application
 
 1. Open a terminal or command prompt and navigate to the directory where your Flask application is saved.
 
 2. Run following command in terminal.
-    python flaskapp.py
+```python flaskapp.py```
     
-## COMPLETED/MARKED
+3. A live server will open with the login page in your default browser.
+
+4. Use the application and please do provide any contructive feedback (if any).
+ 
+5. Enjoy .
+
+== COMPLETED/MARKED/GRADED ==
