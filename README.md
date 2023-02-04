@@ -47,4 +47,4 @@ Open a terminal or command prompt and run the following command to install Flask
  
 5. Enjoy .
 
-== COMPLETED/MARKED/GRADED ==
+~~**COMPLETED/MARKED/GRADED**~~
